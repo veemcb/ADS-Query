@@ -11,12 +11,14 @@ For ADS query syntax see [this link](https://adsabs.github.io/help/search/search
 
 For each country in our list, the query output is parsed to search for that specific country in each affiliation. We then keep track of the Author, DOI, bibcode and date for each article.
 
+We used multiple spellings, as can be seen in the file `ListCountries.txt', as a catch all for different names for countries.
+
 We convert the lists into a _pandas_ DataFrame and then drop any duplicate authors.
 
-The Jupyter notebook containing the query and an initial 
+The Jupyter notebook containing the query and an initial is in this repository
 
 ### Idiosyncracies
 
-1. The ADS query returns a maximum of around 2800 lines, even if you set the number of rows larger than this. For that reason, we've had to run separate queries for South Africa (for each year). 
+1. The ADS query returns a maximum of around 2800 lines, even if you set the number of rows larger than this. For that reason, we've had to run separate queries for South Africa (for each year). This is a problem that will affect any query that returns a large number of rows from the database.
 
-2. The _pandas_ `drop_duplicates` command will not drop all duplicates, e.g. _Carignan, C_ and _Carignan, Claude_ will be viewed as different authors. We had to implement a final, manual check for duplicates.
+2. The _pandas_ `drop_duplicates` command will drop only literal duplicates, e.g. _Carignan, C_ and _Carignan, Claude_ will be viewed as different authors. We had to implement a final, manual check for duplicates.
